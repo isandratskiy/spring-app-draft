@@ -1,0 +1,20 @@
+### Get students
+GET http://localhost:8080/api/v1/student
+
+### Register student
+POST http://localhost:8080/api/v1/student
+Content-Type: application/json
+
+{
+  "id": 4,
+  "dob": 999,
+  "email": "henri888@dummy.com",
+  "name": "henrick"
+}
+
+### Update student
+PUT http://localhost:8080/api/v1/student/2?name=Jojog&email=jj@gmail.com
+Content-Type: application/json
+
+### Delete student
+DELETE http://localhost:8080/api/v1/student/2

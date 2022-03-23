@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      dialect: 'org:hibernate:dialect:PostgreSQLDialect'
+      format_sql: true
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/student'
+    username: postgres
+    password: postgres
