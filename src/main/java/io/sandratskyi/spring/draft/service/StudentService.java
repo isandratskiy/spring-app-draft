@@ -1,35 +1,38 @@
-package io.sandratskyi.spring.draft.student;
+package io.sandratskyi.spring.draft.service;
 
+import io.sandratskyi.spring.draft.entity.Student;
+import io.sandratskyi.spring.draft.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
-    private final StudentRepository studentRepository;
+    private final StudentRepository repository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+        this.repository = studentRepository;
     }
 
     public List<Student> getStudents() {
-        return this.studentRepository.findAll();
+        return this.repository.findAll();
     }
 
     public void addStudent(Student student) {
-        Optional<Student> takenStudent = this.studentRepository.findStudentByEmail(student.getEmail());
-        if (takenStudent.isPresent()) throw new IllegalStateException("Email is used already");
-        this.studentRepository.save(student);
+        var takenStudent = this.repository.findStudentByEmail(student.getEmail());
+        if (takenStudent.isPresent())
+            throw new IllegalStateException("Email is used already");
+        this.repository.save(student);
     }
 
     public void deleteStudent(Long id) {
-        Optional<Student> takenStudent = this.studentRepository.findById(id);
-        if (takenStudent.isEmpty()) throw new IllegalStateException("Unable to find student with id: " + id);
-        this.studentRepository.delete(takenStudent.get());
+        var takenStudent = this.repository.findById(id);
+        if (takenStudent.isEmpty())
+            throw new IllegalStateException("Unable to find student with id: " + id);
+        this.repository.delete(takenStudent.get());
     }
 
     @Transactional
@@ -37,7 +40,7 @@ public class StudentService {
             Long id,
             String name,
             String email) {
-        Student student = this.studentRepository.findById(id)
+        var student = this.repository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
                         "Unable to find student with id: " + id));
 

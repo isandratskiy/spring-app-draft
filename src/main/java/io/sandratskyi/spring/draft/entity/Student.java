@@ -1,4 +1,4 @@
-package io.sandratskyi.spring.draft.student;
+package io.sandratskyi.spring.draft.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,14 +7,15 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.Period;
 
-@Entity
-@Table
+import static java.time.Period.between;
+
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
+@Entity
+@Table
 public class Student {
 
     @Id
@@ -27,13 +28,13 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence")
 
-    @Transient
-    private Integer age;
-
     private Long id;
     private String name;
     private String email;
     private LocalDate dob;
+
+    @Transient
+    private Integer age;
 
     public Student(Long id,
                    String name,
@@ -46,6 +47,6 @@ public class Student {
     }
 
     public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
+        return between(this.dob, LocalDate.now()).getYears();
     }
 }

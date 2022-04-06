@@ -1,5 +1,6 @@
-package io.sandratskyi.spring.draft.student;
+package io.sandratskyi.spring.draft.repository;
 
+import io.sandratskyi.spring.draft.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

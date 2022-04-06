@@ -1,5 +1,7 @@
-package io.sandratskyi.spring.draft.student;
+package io.sandratskyi.spring.draft.controller;
 
+import io.sandratskyi.spring.draft.entity.Student;
+import io.sandratskyi.spring.draft.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -4,6 +4,6 @@ spring:
       ddl-auto: create-drop
     show-sql: false
   datasource:
-    url: 'jdbc:postgresql://postgresqldb:5432/student'
+    url: 'jdbc:tc:postgresql:12:///'
     username: postgres
     password: postgres
