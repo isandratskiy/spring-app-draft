@@ -39,6 +39,8 @@ class StudentServiceTest {
 
     @Test
     void deleteStudent(Student student) {
+        service.addStudent(student);
+        service.deleteStudent(1L);
         var addedStudent = service.getStudents()
                 .stream()
                 .filter(it -> it.getEmail().equals(student.getEmail()))
@@ -50,11 +52,13 @@ class StudentServiceTest {
     @Test
     void updateStudent(Student student) {
         service.addStudent(student);
-        service.updateStudent(1L, "Hank", "hank@gmail.com");
+        var studentId = service.getStudents().stream().findAny().get().getId();
+
+        service.updateStudent(studentId, "Hank", "hank@gmail.com");
 
         var addedStudent = service.getStudents()
                 .stream()
-                .filter(it -> it.getName().equals("Hank"))
+                .filter(it -> it.getId() == studentId)
                 .findAny()
                 .get();
 

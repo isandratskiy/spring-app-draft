@@ -11,7 +11,6 @@ import static java.time.LocalDate.of;
 import static java.time.Month.APRIL;
 
 public class StudentResolver implements ParameterResolver {
-
     @Override
     public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
         return parameterContext.getParameter().getType() == Student.class;
