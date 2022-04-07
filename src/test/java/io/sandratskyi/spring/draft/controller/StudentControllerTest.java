@@ -3,6 +3,7 @@ package io.sandratskyi.spring.draft.controller;
 import io.sandratskyi.spring.draft.StudentResolver;
 import io.sandratskyi.spring.draft.entity.Student;
 import io.sandratskyi.spring.draft.service.StudentService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ActiveProfiles("integration")
 @ExtendWith(StudentResolver.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@DisplayName("Student Controller Test -- ")
 class StudentControllerTest {
     @Autowired
     public TestRestTemplate restTemplate;
@@ -28,6 +30,7 @@ class StudentControllerTest {
     private StudentService service;
 
     @Test
+    @DisplayName("must get all student")
     void getStudents(Student student) {
         service.addStudent(student);
         var all = restTemplate.getForEntity("/api/v1/student", Student[].class);
@@ -35,12 +38,14 @@ class StudentControllerTest {
     }
 
     @Test
+    @DisplayName("must register student")
     void registerStudent(Student student) {
         var response = restTemplate.postForEntity("/api/v1/student", student, null);
         assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
+    @DisplayName("must delete student")
     void deleteStudent(Student student) {
         service.addStudent(student);
         var beforeDelete = restTemplate.getForEntity("/api/v1/student", Student[].class).getBody().length;
@@ -51,6 +56,7 @@ class StudentControllerTest {
     }
 
     @Test
+    @DisplayName("must update student")
     void updateStudent(Student student) {
         service.addStudent(student);
         var studentId = stream(restTemplate.getForEntity("/api/v1/student", Student[].class).getBody())

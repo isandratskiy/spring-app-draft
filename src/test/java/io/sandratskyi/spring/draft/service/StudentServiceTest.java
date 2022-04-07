@@ -2,6 +2,7 @@ package io.sandratskyi.spring.draft.service;
 
 import io.sandratskyi.spring.draft.StudentResolver;
 import io.sandratskyi.spring.draft.entity.Student;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @Testcontainers
 @ActiveProfiles("integration")
 @ExtendWith(StudentResolver.class)
+@DisplayName("Student Service Test -- ")
 class StudentServiceTest {
     @Autowired
     private StudentService service;
 
     @Test
+    @DisplayName("must get all students")
     void getStudents(Student student) {
         service.addStudent(student);
         var students = service.getStudents();
@@ -27,6 +30,7 @@ class StudentServiceTest {
     }
 
     @Test
+    @DisplayName("must add student")
     void addStudent(Student student) {
         service.addStudent(student);
         var addedStudent = service.getStudents()
@@ -38,6 +42,7 @@ class StudentServiceTest {
     }
 
     @Test
+    @DisplayName("must delete student")
     void deleteStudent(Student student) {
         service.addStudent(student);
         service.deleteStudent(1L);
@@ -50,6 +55,7 @@ class StudentServiceTest {
     }
 
     @Test
+    @DisplayName("must update student")
     void updateStudent(Student student) {
         service.addStudent(student);
         var studentId = service.getStudents().stream().findAny().get().getId();

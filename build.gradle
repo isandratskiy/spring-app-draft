@@ -42,6 +42,6 @@ test {
         showStandardStreams = false
         events "passed", "failed"
         exceptionFormat = "full"
-        displayGranularity = 4
+        displayGranularity = 2
     }
 }
