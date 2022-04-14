@@ -22,7 +22,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ActiveProfiles("integration")
 @ExtendWith(StudentResolver.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@DisplayName("Student Controller Test -- ")
+@DisplayName("Student Controller --")
 class StudentControllerTest {
     @Autowired
     public TestRestTemplate restTemplate;

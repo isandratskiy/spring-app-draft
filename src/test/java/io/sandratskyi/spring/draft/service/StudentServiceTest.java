@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Testcontainers
 @ActiveProfiles("integration")
 @ExtendWith(StudentResolver.class)
-@DisplayName("Student Service Test -- ")
+@DisplayName("Student Service --")
 class StudentServiceTest {
     @Autowired
     private StudentService service;
