@@ -35,7 +35,7 @@ jobs:
           path: build/libs
 
       - name: Build Docker
-        run: make start
+        run: make docker
 
       - name: Shutdown Docker
         run: make stop

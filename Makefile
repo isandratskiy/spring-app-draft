@@ -4,6 +4,9 @@ bootJar:
 snapshot:
 	\
 	./gradlew clean build
+docker:
+	\
+	docker-compose up -d --force-recreate
 start:
 	\
 	./gradlew clean assemble && \
