@@ -2,7 +2,7 @@ name: CI
 on:
   push:
 jobs:
-  build:
+  build-artifact:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,3 +16,25 @@ jobs:
 
       - name: Build
         run: make snapshot
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: spring-app
+          path: build/libs
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@master
+        with:
+          name: spring-app
+          path: build/libs
+
+      - name: Build Docker
+        run: make start
+
+      - name: Shutdown Docker
+        run: make stop
